@@ -11,6 +11,7 @@
     "node-fetch": "^2.6.0"
   },
   "scripts": {
+    "branchCreation": "node -r esm src/branchCreation.js",
     "branchProtection": "node -r esm src/branchProtection.js"
   }
 }
