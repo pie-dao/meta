@@ -1,0 +1,16 @@
+{
+  "name": "@pie-dao/meta",
+  "version": "1.0.0",
+  "description": "Provides common components and functionality for managing PieDAO Github repos.",
+  "repository": "git@github.com:pie-dao/meta.git",
+  "author": "Dan Matthews <dan@cryptobuilders.io>",
+  "license": "MIT",
+  "dependencies": {
+    "@pie-dao/utils": "^1.0.0",
+    "esm": "^3.2.25",
+    "node-fetch": "^2.6.0"
+  },
+  "scripts": {
+    "branchProtection": "node -r esm src/branchProtection.js"
+  }
+}
