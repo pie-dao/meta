@@ -12,6 +12,7 @@
   },
   "scripts": {
     "branchCreation": "node -r esm src/branchCreation.js",
-    "branchProtection": "node -r esm src/branchProtection.js"
+    "branchProtection": "node -r esm src/branchProtection.js",
+    "githubTemplates": "node -r esm src/githubTemplates.js"
   }
 }
