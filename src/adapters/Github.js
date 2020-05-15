@@ -40,6 +40,23 @@ export default class Github {
     return response.json();
   }
 
+  async createPullRequest({ branch, bodyMessage, title }) {
+    const { baseUrl, repo, token } = this;
+
+    const url = `${baseUrl}/repos/${repo}/pulls`;
+    const headers = { Authorization: `token ${token}` };
+    const method = 'POST';
+    const body = JSON.stringify({
+      title,
+      base: 'development',
+      body: bodyMessage,
+      head: branch,
+    });
+
+    const response = await fetch(url, { body, headers, method });
+    return response.json();
+  }
+
   async getHooks() {
     const { baseUrl, repo, token } = this;
 
@@ -47,6 +64,40 @@ export default class Github {
     const headers = { Authorization: `token ${token}` };
 
     const response = await fetch(url, { headers });
+    return response.json();
+  }
+
+  async protectBranch(branchName) {
+    const { baseUrl, repo, token } = this;
+
+    const url = `${baseUrl}/repos/${repo}/branches/${branchName}/protection`;
+    const headers = {
+      Accept: 'application/vnd.github.luke-cage-preview+json',
+      Authorization: `token ${token}`,
+    };
+    const method = 'PUT';
+    const body = JSON.stringify({
+      allow_deletions: false,
+      allow_force_pushes: false,
+      enforce_admins: true,
+      required_linear_history: true,
+      required_pull_request_reviews: {
+        dismiss_stale_reviews: true,
+        required_approving_review_count: 1,
+        require_code_owner_reviews: false,
+      },
+      required_status_checks: {
+        contexts: [],
+        strict: true,
+      },
+      restrictions: {
+        apps: [],
+        teams: [],
+        users: [],
+      },
+    });
+
+    const response = await fetch(url, { body, headers, method });
     return response.json();
   }
 
