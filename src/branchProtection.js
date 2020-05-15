@@ -17,8 +17,8 @@ const main = async () => {
   const url1 = `https://api.github.com/repos/${repo}/branches/master/protection`;
   const url2 = `https://api.github.com/repos/${repo}/branches/development/protection`;
   const headers = {
-    'Accept': 'application/vnd.github.luke-cage-preview+json',
-    'Authorization': `token ${token}`,
+    Accept: 'application/vnd.github.luke-cage-preview+json',
+    Authorization: `token ${token}`,
   };
   const method = 'PUT';
   const body = JSON.stringify({

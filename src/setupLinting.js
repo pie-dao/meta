@@ -30,11 +30,11 @@ const es6Linting = async () => {
     'cp -v ../../config/eslint/es6.eslint.js .eslintrc.js',
     'mkdir -p .github/workflows/',
     'cp -v ../../github/workflows/eslint.yml .github/workflows/',
-    'sed -i "s/\\"scripts\\": {/\\"scripts\\": {\\n' +
-    '    \\"lint\\": \\"npx eslint src\\/*.js src\\/**\\/*.js\\",\\n' +
-    '    \\"prerelease\\": \\"yarn lint\\",\\n' +
-    '    \\"release\\": \\"npm publish --access=public\\",' +
-    '/" package.json',
+    'sed -i "s/\\"scripts\\": {/\\"scripts\\": {\\n'
+      + '    \\"lint\\": \\"npx eslint src\\/*.js src\\/**\\/*.js\\",\\n'
+      + '    \\"prerelease\\": \\"yarn lint\\",\\n'
+      + '    \\"release\\": \\"npm publish --access=public\\",'
+      + '/" package.json',
     'git add .',
     'git commit -m "add linting configuration"',
     `git push -u origin ${branch}`,
@@ -47,7 +47,7 @@ const es6Linting = async () => {
   return branch;
 };
 
-const reactLinting = async() => {
+const reactLinting = async () => {
   const branch = `feature/linting-react-${Date.now()}`;
 
   const commands = [
@@ -61,11 +61,11 @@ const reactLinting = async() => {
     'yarn add -D eslint-plugin-react-hooks@2.5.1',
     'rm -v .eslintrc .eslintrc.js',
     'cp -v ../../config/eslint/react.eslint.js .eslintrc.js',
-    'sed -i "s/\\"scripts\\": {/\\"scripts\\": {\\n' +
-    '    \\"lint\\": \\"npx eslint src\\/*.js src\\/**\\/*.js\\",\\n' +
-    '    \\"prerelease\\": \\"yarn lint\\",\\n' +
-    '    \\"release\\": \\"npm publish --access=public\\",\\n' +
-    '/" package.json',
+    'sed -i "s/\\"scripts\\": {/\\"scripts\\": {\\n'
+      + '    \\"lint\\": \\"npx eslint src\\/*.js src\\/**\\/*.js\\",\\n'
+      + '    \\"prerelease\\": \\"yarn lint\\",\\n'
+      + '    \\"release\\": \\"npm publish --access=public\\",\\n'
+      + '/" package.json',
     'git add .',
     'git commit -m "add linting configuration"',
     `git push -u origin ${branch}`,
@@ -92,7 +92,7 @@ const main = async () => {
           process.exit(1);
         }
 
-        resolve(response)
+        resolve(response);
       });
     });
 
@@ -109,7 +109,7 @@ const main = async () => {
     console.log(branch);
 
     const url = `https://api.github.com/repos/${repo}/pulls`;
-    const headers = { 'Authorization': `token ${token}` };
+    const headers = { Authorization: `token ${token}` };
     const method = 'POST';
     const body = JSON.stringify({
       title: 'eslint setup',

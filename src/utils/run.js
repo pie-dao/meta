@@ -1,6 +1,6 @@
 import { exec } from 'child_process';
 
-const run = (commands) => new Promise((resolve, reject) => {
+const run = (commands) => new Promise((resolve) => {
   console.log('Running:\n');
   commands.forEach((command) => {
     console.log(command);

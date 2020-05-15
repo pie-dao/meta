@@ -1,7 +1,8 @@
 import fetch from 'node-fetch';
 
-import { exec } from 'child_process';
 import { validateIsString } from '@pie-dao/utils';
+
+import run from './utils/run';
 
 const repo = process.env.REPO;
 const token = process.env.TOKEN;
@@ -31,25 +32,10 @@ const main = async () => {
     'rm -rf repo',
   ];
 
-  await new Promise((resolve, reject) => {
-    exec(commands.join(';'), (error, stdout, stderr) => {
-      if (error) {
-        console.log(`error: ${error.message}`);
-        resolve();
-        return;
-      }
-      if (stderr) {
-        console.log(`stderr: ${stderr}`);
-        resolve();
-        return;
-      }
-      console.log(`stdout: ${stdout}`);
-      resolve();
-    });
-  });
+  await run(commands);
 
   const url = `https://api.github.com/repos/${repo}/pulls`;
-  const headers = { 'Authorization': `token ${token}` };
+  const headers = { Authorization: `token ${token}` };
   const method = 'POST';
   const body = JSON.stringify({
     title: 'New Github templates',
