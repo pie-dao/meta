@@ -8,14 +8,16 @@
   "dependencies": {
     "@pie-dao/utils": "^1.0.0",
     "esm": "^3.2.25",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.0",
+    "terminal-kit": "^1.35.2"
   },
   "scripts": {
     "branchCreation": "node -r esm src/branchCreation.js",
     "branchProtection": "node -r esm src/branchProtection.js",
     "discordWebhook": "node -r esm src/discordWebhook.js",
     "githubTemplates": "node -r esm src/githubTemplates.js",
-    "lint": "npx eslint src/*.js src/**/*.js"
+    "lint": "npx eslint src/*.js src/**/*.js",
+    "setupLinting": "node -r esm src/setupLinting.js"
   },
   "devDependencies": {
     "eslint": "6.8.0",
