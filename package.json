@@ -13,6 +13,7 @@
   "scripts": {
     "branchCreation": "node -r esm src/branchCreation.js",
     "branchProtection": "node -r esm src/branchProtection.js",
-    "discordWebhook": "node -r esm src/discordWebhook.js"
+    "discordWebhook": "node -r esm src/discordWebhook.js",
+    "githubTemplates": "node -r esm src/githubTemplates.js"
   }
 }
