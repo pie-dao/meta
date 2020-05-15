@@ -11,6 +11,9 @@
     "node-fetch": "^2.6.0"
   },
   "scripts": {
+    "lint": "npx eslint src/*.js src/**/*.js",
+    "prerelease": "yarn lint",
+    "release": "npm publish --access=public",
     "branchCreation": "node -r esm src/branchCreation.js",
     "branchProtection": "node -r esm src/branchProtection.js",
     "discordWebhook": "node -r esm src/discordWebhook.js",
