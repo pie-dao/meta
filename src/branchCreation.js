@@ -1,8 +1,9 @@
-import fetch from 'node-fetch';
-
 import { validateIsString } from '@pie-dao/utils';
 
-import run from './utils/run';
+import cloneRepo from './commands/cloneRepo';
+import createDevelopmentBranch from './commands/createDevelopmentBranch';
+import deleteRepo from './commands/deleteRepo';
+import Github from './adapters/Github';
 
 const repo = process.env.REPO;
 const token = process.env.TOKEN;
@@ -16,26 +17,13 @@ validateIsString(token, {
 });
 
 const main = async () => {
-  const commands = [
-    'mkdir -p tmp',
-    'cd tmp',
-    `git clone git@github.com:${repo} repo`,
-    'cd repo',
-    'git checkout -b development',
-    'git push -u origin development',
-    'cd ../',
-    'rm -rf repo',
-  ];
+  await cloneRepo(repo);
+  await createDevelopmentBranch();
+  await deleteRepo();
 
-  await run(commands);
+  const github = new Github(repo, token);
 
-  const url = `https://api.github.com/repos/${repo}`;
-  const headers = { Authorization: `token ${token}` };
-  const method = 'PATCH';
-  const body = JSON.stringify({ default_branch: 'development' });
-
-  const response = await fetch(url, { body, headers, method });
-  console.log(url, await response.json());
+  console.log(await github.setDefaultBranch('development'));
 };
 
 main();
