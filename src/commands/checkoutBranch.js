@@ -1,6 +1,9 @@
 import run from '../utils/run';
 
-export default (branchName) => run([
+export default async (branchName) => run([
   'cd tmp/repo',
-  `git checkout -b ${branchName}`,
+  `if [ "\`git branch -r | grep 'origin/${branchName}'\`" ]`,
+  `then git checkout ${branchName}`,
+  `else git checkout -b ${branchName}`,
+  'fi',
 ]);
