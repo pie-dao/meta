@@ -1,6 +1,6 @@
-import fetch from 'node-fetch';
-
 import { validateIsString } from '@pie-dao/utils';
+
+import Github from './adapters/Github';
 
 const repo = process.env.REPO;
 const token = process.env.TOKEN;
@@ -20,31 +20,8 @@ validateIsString(webhook, {
 });
 
 const main = async () => {
-  let url = `https://api.github.com/repos/${repo}/hooks`;
-  const headers = { Authorization: `token ${token}` };
-
-  const response1 = await fetch(url, { headers });
-  const hooks = await response1.json();
-
-  let method = 'POST';
-
-  hooks.forEach((hook) => {
-    if (hook.config.url === webhook) {
-      method = 'PATCH';
-      url = `${url}/${hook.id}`;
-    }
-  });
-
-  const body = JSON.stringify({
-    active: true,
-    config: { url: webhook, content_type: 'json' },
-    events: ['*'],
-    name: 'web',
-  });
-
-  console.log(method, url);
-  const response2 = await fetch(url, { body, headers, method });
-  console.log(await response2.json());
+  const github = new Github(repo, token);
+  console.log(await github.createOrUpdateHook(webhook));
 };
 
 main();
