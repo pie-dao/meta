@@ -68,6 +68,7 @@ const main = async () => {
   }
 
   await copyLintingWorkflow();
+  await commit('add linting workflow');
 
   await pushBranch(branch);
 
