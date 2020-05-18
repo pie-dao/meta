@@ -4,6 +4,7 @@ import checkoutBranch from './commands/checkoutBranch';
 import cloneRepo from './commands/cloneRepo';
 import commit from './commands/commit';
 import copyES6Linting from './commands/copyES6Linting';
+import copyLintingWorkflow from './commands/copyLintingWorkflow';
 import copyReactLinting from './commands/copyReactLinting';
 import copyTemplates from './commands/copyTemplates';
 import createDevelopmentBranch from './commands/createDevelopmentBranch';
@@ -65,6 +66,8 @@ const main = async () => {
     await copyReactLinting();
     await commit('add React linting configuration');
   }
+
+  await copyLintingWorkflow();
 
   await pushBranch(branch);
 
