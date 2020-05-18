@@ -10,7 +10,7 @@ import createDevelopmentBranch from './commands/createDevelopmentBranch';
 import deleteRepo from './commands/deleteRepo';
 import Github from './adapters/Github';
 import lintingMenu from './menus/lintingMenu';
-// import pushBranch from './commands/pushBranch';
+import pushBranch from './commands/pushBranch';
 
 const repo = process.env.REPO;
 const token = process.env.TOKEN;
