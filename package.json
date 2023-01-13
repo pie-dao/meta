@@ -9,7 +9,7 @@
     "@pie-dao/utils": "^1.0.0",
     "esm": "^3.2.25",
     "node-fetch": "^2.6.0",
-    "terminal-kit": "^1.35.2"
+    "terminal-kit": "^2.1.8"
   },
   "scripts": {
     "branchCreation": "yarn lint && node -r esm src/branchCreation.js",
